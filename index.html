@@ -1,26 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Proyecto MM</title>
-  <script src="https://unpkg.com/webamp"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conducta Animal — Winamp</title>
+  <style>
+    html, body { margin:0; background:#111; }
+    #app { position:relative; z-index:10; }
+  </style>
+  <script src="https://unpkg.com/webamp@2.2.0/built/webamp.bundle.min.js"></script>
 </head>
-<body style="margin:0; background-color:black;">
-  <div id="app" style="width:100vw; height:100vh;"></div>
+<body>
+  <div id="app"></div>
   <script>
+    const tracks = [
+      { metaData: { title: "Sobrevivimos" }, url: "https://dl.dropboxusercontent.com/scl/fi/tl588c3l6z9ftd1egsa8z/1.-Proyecto-MM-Sobrevivimos-MP3-bits.mp3?rlkey=mnrvmy4xlbn8ejlicj6n0iunj&st=4m00cekn" },
+      { metaData: { title: "Conducta Animal" }, url: "https://dl.dropboxusercontent.com/scl/fi/01ksyyk6wwar5y36tchp1/2.-Proyecto-MM-Conducta-Animal-MP3-bits.mp3?rlkey=1fssau8rwq14rapoeyj1k7xvj&st=mmda1ss8" },
+      { metaData: { title: "Atado Interminable" }, url: "https://dl.dropboxusercontent.com/scl/fi/fbp75xsady0iqg6rz72nd/3.-Proyecto-MM-Atado-Interminable-MP3-bits.mp3?rlkey=z60j85gzgoot07kdsyonrcram&st=u3t5ve73" },
+      { metaData: { title: "Libertad" }, url: "https://dl.dropboxusercontent.com/scl/fi/v4po1966ukk30d1j5ibj8/4.-Proyecto-MM-Libertad-MP3-bits.mp3?rlkey=6787o7oe1ilarzidu0tqt76g9&st=zyj7kk5r" },
+      { metaData: { title: "Un Mundo Mejor" }, url: "https://dl.dropboxusercontent.com/scl/fi/o86x8zxleqed1cen315n0/5.-Proyecto-MM-Un-Mundo-Mejor-MP3-bits.mp3?rlkey=zo9ou110yvcwytwo668i6bimn&st=n8hftvkd" },
+      { metaData: { title: "Noche de Estrellas" }, url: "https://dl.dropboxusercontent.com/scl/fi/4dov46j44fm966uyy416g/6.-Proyecto-MM-Noche-De-Estrellas-MP3-bits.mp3?rlkey=1wlq21jp6jcf5m11zbih0qxxw&st=0nrh10l4" },
+      { metaData: { title: "Patrones" }, url: "https://dl.dropboxusercontent.com/scl/fi/lxh2td2r9sgwfymblj4cs/7.-Proyecto-MM-Patrones-MP3-bits.mp3?rlkey=hlm04pybh0pxtl4dj30pu58ak&st=m9u2co1s" },
+      { metaData: { title: "Hay Muchas Formas De Decir Adiós" }, url: "https://dl.dropboxusercontent.com/scl/fi/3pk5wmhgru9qshmkgy98z/8.-Proyecto-MM-Hay-Muchas-Formas-De-Decir-Adios-MP3-bits.mp3?rlkey=cbz9ckqc19uflr43lyx8lyg99&st=vc9sozoi" }
+    ];
+
     const webamp = new Webamp({
-      initialTracks: [
-        { metaData: { title: "Sobrevivimos" }, url: "https://dl.dropboxusercontent.com/scl/fi/tl588c3l6z9ftd1egsa8z/1.-Proyecto-MM-Sobrevivimos-MP3-bits.mp3?rlkey=mnrvmy4xlbn8ejlicj6n0iunj&st=4m00cekn" },
-        { metaData: { title: "Conducta Animal" }, url: "https://dl.dropboxusercontent.com/scl/fi/01ksyyk6wwar5y36tchp1/2.-Proyecto-MM-Conducta-Animal-MP3-bits.mp3?rlkey=1fssau8rwq14rapoeyj1k7xvj&st=mmda1ss8" },
-        { metaData: { title: "Atado Interminable" }, url: "https://dl.dropboxusercontent.com/scl/fi/fbp75xsady0iqg6rz72nd/3.-Proyecto-MM-Atado-Interminable-MP3-bits.mp3?rlkey=z60j85gzgoot07kdsyonrcram&st=u3t5ve73" },
-        { metaData: { title: "Libertad" }, url: "https://dl.dropboxusercontent.com/scl/fi/v4po1966ukk30d1j5ibj8/4.-Proyecto-MM-Libertad-MP3-bits.mp3?rlkey=6787o7oe1ilarzidu0tqt76g9&st=zyj7kk5r" },
-        { metaData: { title: "Un Mundo Mejor" }, url: "https://dl.dropboxusercontent.com/scl/fi/o86x8zxleqed1cen315n0/5.-Proyecto-MM-Un-Mundo-Mejor-MP3-bits.mp3?rlkey=zo9ou110yvcwytwo668i6bimn&st=n8hftvkd" },
-        { metaData: { title: "Noche de Estrellas" }, url: "https://dl.dropboxusercontent.com/scl/fi/4dov46j44fm966uyy416g/6.-Proyecto-MM-Noche-De-Estrellas-MP3-bits.mp3?rlkey=1wlq21jp6jcf5m11zbih0qxxw&st=0nrh10l4" },
-        { metaData: { title: "Patrones" }, url: "https://dl.dropboxusercontent.com/scl/fi/lxh2td2r9sgwfymblj4cs/7.-Proyecto-MM-Patrones-MP3-bits.mp3?rlkey=hlm04pybh0pxtl4dj30pu58ak&st=m9u2co1s" },
-        { metaData: { title: "Hay Muchas Formas de Decir Adiós" }, url: "https://dl.dropboxusercontent.com/scl/fi/3pk5wmhgru9qshmkgy98z/8.-Proyecto-MM-Hay-Muchas-Formas-De-Decir-Adios-MP3-bits.mp3?rlkey=cbz9ckqc19uflr43lyx8lyg99&st=vc9sozoi" }
-      ]
+      initialTracks: tracks,
+      // Skin clásico (opcional): descomentá la línea de abajo
+      // initialSkin: { url: "https://cdn.webampskins.org/Winamp2/Standard%20Winamp%205.wsz" }
     });
+
     webamp.renderWhenReady(document.getElementById("app"));
   </script>
 </body>
