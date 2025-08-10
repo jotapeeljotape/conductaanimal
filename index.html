@@ -6,49 +6,32 @@
   <title>Conducta Animal — Winamp</title>
   <style>
     html, body { height:100%; margin:0; background:#111; display:grid; place-items:center; }
-    #app { width: 700px; height: 480px; }  /* tamaño mínimo visible */
-    #error { color:#ccc; font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    #app { width: 700px; height: 480px; }
   </style>
+  <!-- Script correcto -->
+  <script src="https://unpkg.com/webamp@1.6.3/min/webamp.min.js"></script>
 </head>
 <body>
   <div id="app"></div>
-  <div id="error" style="display:none">No se pudo cargar el reproductor. Recargá la página. Si persiste, avisame y movemos los MP3 a otro host.</div>
-
-  <!-- 1º intento: jsDelivr -->
-  <script src="https://cdn.jsdelivr.net/npm/webamp@1.6.3/built/webamp.bundle.min.js"
-          onerror="(function(){var s=document.createElement('script');s.src='https://unpkg.com/webamp@1.6.3/built/webamp.bundle.min.js';s.onerror=function(){document.getElementById('error').style.display='block';};document.body.appendChild(s);}())">
-  </script>
-
   <script>
-    (function start() {
-      function boot() {
-        if (!window.Webamp) {
-          // Espera un tick por si el primer script aún está cargando
-          return setTimeout(boot, 150);
-        }
-        const tracks = [
-          { metaData: { title: "Sobrevivimos" }, url: "https://www.dropbox.com/scl/fi/tl588c3l6z9ftd1egsa8z/1.-Proyecto-MM-Sobrevivimos-MP3-bits.mp3?rlkey=mnrvmy4xlbn8ejlicj6n0iunj&st=4m00cekn&raw=1" },
-          { metaData: { title: "Conducta Animal" }, url: "https://www.dropbox.com/scl/fi/01ksyyk6wwar5y36tchp1/2.-Proyecto-MM-Conducta-Animal-MP3-bits.mp3?rlkey=1fssau8rwq14rapoeyj1k7xvj&st=mmda1ss8&raw=1" },
-          { metaData: { title: "Atado Interminable" }, url: "https://www.dropbox.com/scl/fi/fbp75xsady0iqg6rz72nd/3.-Proyecto-MM-Atado-Interminable-MP3-bits.mp3?rlkey=z60j85gzgoot07kdsyonrcram&st=u3t5ve73&raw=1" },
-          { metaData: { title: "Libertad" }, url: "https://www.dropbox.com/scl/fi/v4po1966ukk30d1j5ibj8/4.-Proyecto-MM-Libertad-MP3-bits.mp3?rlkey=6787o7oe1ilarzidu0tqt76g9&st=zyj7kk5r&raw=1" },
-          { metaData: { title: "Un Mundo Mejor" }, url: "https://www.dropbox.com/scl/fi/o86x8zxleqed1cen315n0/5.-Proyecto-MM-Un-Mundo-Mejor-MP3-bits.mp3?rlkey=zo9ou110yvcwytwo668i6bimn&st=n8hftvkd&raw=1" },
-          { metaData: { title: "Noche de Estrellas" }, url: "https://www.dropbox.com/scl/fi/4dov46j44fm966uyy416g/6.-Proyecto-MM-Noche-De-Estrellas-MP3-bits.mp3?rlkey=1wlq21jp6jcf5m11zbih0qxxw&st=0nrh10l4&raw=1" },
-          { metaData: { title: "Patrones" }, url: "https://www.dropbox.com/scl/fi/lxh2td2r9sgwfymblj4cs/7.-Proyecto-MM-Patrones-MP3-bits.mp3?rlkey=hlm04pybh0pxtl4dj30pu58ak&st=m9u2co1s&raw=1" },
-          { metaData: { title: "Hay Muchas Formas De Decir Adiós" }, url: "https://www.dropbox.com/scl/fi/3pk5wmhgru9qshmkgy98z/8.-Proyecto-MM-Hay-Muchas-Formas-De-Decir-Adios-MP3-bits.mp3?rlkey=cbz9ckqc19uflr43lyx8lyg99&st=vc9sozoi&raw=1" }
-        ];
+    const tracks = [
+      { metaData: { title: "Sobrevivimos" }, url: "https://www.dropbox.com/scl/fi/tl588c3l6z9ftd1egsa8z/1.-Proyecto-MM-Sobrevivimos-MP3-bits.mp3?rlkey=mnrvmy4xlbn8ejlicj6n0iunj&st=4m00cekn&raw=1" },
+      { metaData: { title: "Conducta Animal" }, url: "https://www.dropbox.com/scl/fi/01ksyyk6wwar5y36tchp1/2.-Proyecto-MM-Conducta-Animal-MP3-bits.mp3?rlkey=1fssau8rwq14rapoeyj1k7xvj&st=mmda1ss8&raw=1" },
+      { metaData: { title: "Atado Interminable" }, url: "https://www.dropbox.com/scl/fi/fbp75xsady0iqg6rz72nd/3.-Proyecto-MM-Atado-Interminable-MP3-bits.mp3?rlkey=z60j85gzgoot07kdsyonrcram&st=u3t5ve73&raw=1" },
+      { metaData: { title: "Libertad" }, url: "https://www.dropbox.com/scl/fi/v4po1966ukk30d1j5ibj8/4.-Proyecto-MM-Libertad-MP3-bits.mp3?rlkey=6787o7oe1ilarzidu0tqt76g9&st=zyj7kk5r&raw=1" },
+      { metaData: { title: "Un Mundo Mejor" }, url: "https://www.dropbox.com/scl/fi/o86x8zxleqed1cen315n0/5.-Proyecto-MM-Un-Mundo-Mejor-MP3-bits.mp3?rlkey=zo9ou110yvcwytwo668i6bimn&st=n8hftvkd&raw=1" },
+      { metaData: { title: "Noche de Estrellas" }, url: "https://www.dropbox.com/scl/fi/4dov46j44fm966uyy416g/6.-Proyecto-MM-Noche-De-Estrellas-MP3-bits.mp3?rlkey=1wlq21jp6jcf5m11zbih0qxxw&st=0nrh10l4&raw=1" },
+      { metaData: { title: "Patrones" }, url: "https://www.dropbox.com/scl/fi/lxh2td2r9sgwfymblj4cs/7.-Proyecto-MM-Patrones-MP3-bits.mp3?rlkey=hlm04pybh0pxtl4dj30pu58ak&st=m9u2co1s&raw=1" },
+      { metaData: { title: "Hay Muchas Formas De Decir Adiós" }, url: "https://www.dropbox.com/scl/fi/3pk5wmhgru9qshmkgy98z/8.-Proyecto-MM-Hay-Muchas-Formas-De-Decir-Adios-MP3-bits.mp3?rlkey=cbz9ckqc19uflr43lyx8lyg99&st=vc9sozoi&raw=1" }
+    ];
 
-        const webamp = new Webamp({
-          initialTracks: tracks,
-          // Skin clásico (opcional): descomentar para full nostalgia
-          // initialSkin: { url: "https://cdn.webampskins.org/Winamp2/Standard%20Winamp%205.wsz" }
-        });
+    const webamp = new Webamp({
+      initialTracks: tracks,
+      // Skin clásico opcional:
+      // initialSkin: { url: "https://cdn.webampskins.org/Winamp2/Standard%20Winamp%205.wsz" }
+    });
 
-        webamp.renderWhenReady(document.getElementById("app")).catch(() => {
-          document.getElementById('error').style.display = 'block';
-        });
-      }
-      boot();
-    }());
+    webamp.renderWhenReady(document.getElementById("app"));
   </script>
 </body>
 </html>
